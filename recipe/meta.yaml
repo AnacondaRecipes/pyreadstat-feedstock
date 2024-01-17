@@ -23,7 +23,7 @@ requirements:
     - setuptools
     - wheel
     - cython
-    - zlib
+    - zlib 1.2.13
     - libiconv  # [win]
   run:
     - python
@@ -41,7 +41,8 @@ test:
     - pip
   commands:
     - pip check
-    - python3 tests/test_basic.py
+    - python tests/test_basic.py  # [not win]
+    - python tests/test_basic.py  # [win]
 
 about:
   home: https://github.com/Roche/pyreadstat
