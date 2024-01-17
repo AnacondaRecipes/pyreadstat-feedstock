@@ -16,23 +16,17 @@ build:
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
-    - {{ compiler('c') }}  # [win]
-    - {{ compiler('c') }}  # [not win]
+    - {{ compiler('c') }}
   host:
     - python
     - pip
     - cython
-    - zlib  # [not win]
-    - zlib  # [win]
+    - zlib
     - libiconv  # [win]
   run:
     - python
     - pandas
-    - zlib  # [not win]
-    - zlib  # [win]
+    - zlib
     - libiconv  # [win]
 
 test:
