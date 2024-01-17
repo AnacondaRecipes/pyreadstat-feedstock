@@ -50,8 +50,10 @@ about:
   license_file: LICENSE.txt
   summary: read SAS, SPSS and STATA files into pandas data frames
   description: |
-    A Python package to read SAS (sas7bdat, sas7bcat, xport/xpt), SPSS (sav, zsav, por) and Stata (dta) files into pandas data frames. It is a wrapper around the C library readstat.
-  doc_url: https://github.com/Roche/pyreadstat
+    A Python package to read SAS (sas7bdat, sas7bcat, xport/xpt),
+    SPSS (sav, zsav, por) and Stata (dta) files into pandas data frames.
+    It is a wrapper around the C library readstat.
+  doc_url: https://github.com/Roche/pyreadstat/blob/master/README.md
   dev_url: https://github.com/Roche/pyreadstat
 
 extra:
