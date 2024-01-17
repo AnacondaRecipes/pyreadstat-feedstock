@@ -32,8 +32,16 @@ requirements:
     - libiconv  # [win]
 
 test:
+  source_files:
+    - tests
+    - test_data
   imports:
     - pyreadstat
+  requires:
+    - pip
+  commands:
+    - pip check
+    - python3 tests/test_basic.py
 
 about:
   home: https://github.com/Roche/pyreadstat
