@@ -13,13 +13,10 @@ build:
   number: 0
   skip: true  # [py<35]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  patches:                            # [win]
-    - skip-broken-test-windows.patch  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -38,14 +35,21 @@ test:
   source_files:
     - tests
     - test_data
+  files:
+    # Moving "import pyreadstat" to support testing as a module.
+    - fix-test-imports.patch
   imports:
     - pyreadstat
   requires:
     - pip
+    - pytest
+    - m2-patch  # [win]
   commands:
     - pip check
-    - python tests/test_basic.py  # [not win]
-    - python tests/test_basic.py  # [win]
+    - patch -Np1 -i fix-test-imports.patch --binary
+    # Skipping expected failing test on Windows.
+    - pytest tests/test_basic.py -k "not test_sas7bdat_international"  # [win]
+    - pytest tests/test_basic.py  # [not win]
 
 about:
   home: https://github.com/Roche/pyreadstat
