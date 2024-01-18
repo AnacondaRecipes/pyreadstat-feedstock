@@ -22,9 +22,9 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - cython
+    - cython 3.0.6
     - zlib 1.2.13
-    - libiconv  # [win]
+    - libiconv 1.16  # [win]
   run:
     - python
     - pandas
