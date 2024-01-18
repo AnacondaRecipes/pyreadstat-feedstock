@@ -23,11 +23,11 @@ requirements:
     - setuptools
     - wheel
     - cython 3.0.6
-    - zlib 1.2.13
+    - zlib {{ zlib }}
     - libiconv 1.16  # [win]
   run:
     - python
-    - pandas
+    - pandas >=1.2.0
     - zlib
     - libiconv  # [win]
 
