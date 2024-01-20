@@ -1,0 +1,12 @@
+diff --git a/tests/test_basic.py b/tests/test_basic.py
+index dfb63e3..6f07adc 100644
+--- a/tests/test_basic.py
++++ b/tests/test_basic.py
+@@ -16,6 +16,7 @@
+ # #############################################################################
+ 
+ from datetime import datetime, timedelta, date
++import pyreadstat
+ import unittest
+ import os
+ import sys
