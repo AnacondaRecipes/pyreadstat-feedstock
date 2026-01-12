@@ -67,3 +67,10 @@ about:
 extra:
   recipe-maintainers:
     - ofajardo
+  skip-lints:
+    - missing_source
+  anaconda-services:
+    recipe-maintainers:
+       - bkreider
+    comment: "https://anaconda.zendesk.com/agent/tickets/72455"
+
