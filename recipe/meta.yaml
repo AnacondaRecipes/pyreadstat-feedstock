@@ -1,13 +1,13 @@
 {% set name = "pyreadstat" %}
-{% set version = "1.2.6" %}
+{% set version = "1.3.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/Roche/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 987c102576af2cfc8656b81098eb52d1abf931953634985f16e0ed2032d8aa96
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 4ebb105119e4d4026328cd611e5e582e7456d14057be25070d5ebf7ff730ed78
 
 build:
   number: 0
@@ -20,36 +20,27 @@ requirements:
   host:
     - python
     - pip
+    - cython
     - setuptools
     - wheel
-    - cython 3.0.6
-    - zlib {{ zlib }}
-    - libiconv 1.16  # [win]
+    - cython 
+    - zlib 
+    - libiconv >=1.16  # [win]
   run:
     - python
+    - narwhals >=2.10.1
     - pandas >=1.2.0
+    - numpy
     - zlib
     - libiconv  # [win]
 
 test:
-  source_files:
-    - tests
-    - test_data
-  files:
-    # Moving "import pyreadstat" to support testing as a module.
-    - fix-test-imports.patch
   imports:
     - pyreadstat
   requires:
     - pip
-    - pytest
-    - m2-patch  # [win]
   commands:
     - pip check
-    - patch -Np1 -i fix-test-imports.patch --binary
-    # Skipping expected failing test on Windows.
-    - pytest tests/test_basic.py -k "not test_sas7bdat_international"  # [win]
-    - pytest tests/test_basic.py  # [not win]
 
 about:
   home: https://github.com/Roche/pyreadstat
@@ -67,3 +58,8 @@ about:
 extra:
   recipe-maintainers:
     - ofajardo
+  anaconda-services:
+    recipe-maintainers:
+       - bkreider
+    comment: "https://anaconda.zendesk.com/agent/tickets/72455"
+
