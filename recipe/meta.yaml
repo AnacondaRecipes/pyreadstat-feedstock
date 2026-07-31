@@ -1,35 +1,37 @@
 {% set name = "pyreadstat" %}
-{% set version = "1.2.6" %}
+{% set version = "1.3.5" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://github.com/Roche/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 987c102576af2cfc8656b81098eb52d1abf931953634985f16e0ed2032d8aa96
+  sha256: dacf76cfa871d63d4b4de5011447b8bbda8430498cb463093fd5400529e7e8a3
 
 build:
   number: 0
-  skip: true  # [py<35]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
-    - python
     - pip
+    - python
     - setuptools
     - wheel
-    - cython 3.0.6
+    - cython 3.2.5
     - zlib {{ zlib }}
-    - libiconv 1.16  # [win]
+    - libiconv {{ libiconv }}  # [win]
   run:
     - python
     - pandas >=1.2.0
     - zlib
     - libiconv  # [win]
+    - narwhals >=2.10.1
+    - numpy {{ numpy }}
 
 test:
   source_files:
@@ -43,7 +45,8 @@ test:
   requires:
     - pip
     - pytest
-    - m2-patch  # [win]
+    - msys2-patch  # [win]
+    - patch  # [unix]
   commands:
     - pip check
     - patch -Np1 -i fix-test-imports.patch --binary
