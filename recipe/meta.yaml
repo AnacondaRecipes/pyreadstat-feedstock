@@ -45,6 +45,8 @@ test:
   requires:
     - pip
     - pytest
+    - msys2-patch  # [win]
+    - patch  # [unix]
   commands:
     - pip check
     - patch -Np1 -i fix-test-imports.patch --binary
