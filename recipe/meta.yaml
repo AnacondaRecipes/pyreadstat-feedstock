@@ -25,14 +25,13 @@ requirements:
     - cython 3.2.5
     - zlib {{ zlib }}
     - libiconv {{ libiconv }}  # [win]
-    - narwhals >=2.10.1
-    - numpy {{ numpy }}
   run:
     - python
     - pandas >=1.2.0
     - zlib
     - libiconv  # [win]
     - narwhals >=2.10.1
+    - numpy {{ numpy }}
 
 test:
   source_files:
