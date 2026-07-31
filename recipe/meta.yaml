@@ -32,6 +32,7 @@ requirements:
     - pandas >=1.2.0
     - zlib
     - libiconv  # [win]
+    - narwhals >=2.10.1
 
 test:
   source_files:
